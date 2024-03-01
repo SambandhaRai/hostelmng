@@ -23,14 +23,18 @@ def login():
     em = email.get()
     password = code.get()
 
+    # Check if password length is not equal to 8 characters
+    if len(password) < 8:
+        messagebox.showerror("Invalid", "Password must be 8 characters long")
+        return
+
     conn = sqlite3.connect("hostelers.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM user WHERE email=? AND password=?",(em,password))
+    c.execute("SELECT * FROM User WHERE email=? AND password=?",(em,password))
     authenticated_email = c.fetchone()
 
     if authenticated_email:
         root.destroy()
-        import registration as registration
     elif em == "" or password == "":
         messagebox.showerror("Invalid","Please fill out the fields")
     else:
