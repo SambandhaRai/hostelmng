@@ -32,13 +32,28 @@ def register():
     email_value = email.get()
     password_value = code.get()
     conpassword_value = code2.get()
+
+    #email is valid or not
+    if "@gmail.com" in email_value or "@yahoo.com" in email_value or "@icloud.com" in email_value or "@outlook.com" in email_value:
+        pass
+    else:
+        messagebox.showerror("Invalid","Please enter valid email")
+        return
+
+    if password_value == "":
+        messagebox.showerror("Invalid","Please enter your password")
+        return
+
     # Check if password length is not equal to 8 characters
     if len(password_value) < 8:
         messagebox.showerror("Invalid", "Password must be 8 characters long")
         return
     
     if password_value!=conpassword_value:
-        messagebox.showerror("Invald","The Password does not match")
+        messagebox.showerror("Invalid","The Password does not match")
+        return
+    else:
+        messagebox.showinfo("Success","Registered Successfully")
 
     # Perform registration logic here
     print("Registration Details:")
