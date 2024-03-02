@@ -23,10 +23,6 @@ def login():
     em = email.get()
     password = code.get()
 
-    # Check if password length is not equal to 8 characters
-    if len(password) < 8:
-        messagebox.showerror("Invalid", "Password must be 8 characters long")
-        return
 
     conn = sqlite3.connect("hostelers.db")
     c = conn.cursor()
@@ -37,10 +33,18 @@ def login():
         root.destroy()
     elif em == "" or password == "":
         messagebox.showerror("Invalid","Please fill out the fields")
+        return
+    # Check if password length is not equal to 8 characters
+    elif len(password) < 8:
+        messagebox.showerror("Invalid", "Password must be 8 characters long")
+        return
     else:
         messagebox.showerror("Invalid","Invalid Email and Password")
-
-
+        return
+    
+    if em != authenticated_email or password != authenticated_email:
+        messagebox.showerror("Login Failed","User not found")
+        return
         
 
 
