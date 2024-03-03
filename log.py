@@ -42,9 +42,6 @@ def login():
         messagebox.showerror("Invalid","Invalid Email and Password")
         return
     
-    if em != authenticated_email or password != authenticated_email:
-        messagebox.showerror("Login Failed","User not found")
-        return
         
 
 
