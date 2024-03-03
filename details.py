@@ -15,7 +15,7 @@ def connect_db():
                         phone_no TEXT,
                         gender TEXT,
                         parents_name TEXT,
-                        parents_phone_number TEXT,
+                        parents_phone_number  TEXT,
                         checkin_date TEXT,
                         checkout_date TEXT)''')
     connection.commit()
@@ -29,10 +29,10 @@ def add_student():
     name = name_ent.get()
     contact_no = contact_ent.get()
     address = address_ent.get()
-    phone_no = contact_ent.get()  # Corrected variable name
+    phone_no = phone_ent.get()
     gender = gender_combobox.get()
     parents_name = parents_ent.get()
-    parents_number = parents_phone_ent.get()
+    parents_number = phone_ent.get()
 
     checkin_date = entry_checkin.get()
     checkout_date = entry_checkout.get()
@@ -85,18 +85,19 @@ def on_select(event):
         name_ent.delete(0, tk.END)
         contact_ent.delete(0, tk.END)
         address_ent.delete(0, tk.END)
+        phone_ent.delete(0, tk.END)
         parents_ent.delete(0, tk.END)
-        parents_phone_ent.delete(0, tk.END)
         entry_checkin.delete(0, tk.END)
         entry_checkout.delete(0, tk.END)
         room_ent.insert(tk.END, selected_item[1])
         name_ent.insert(tk.END, selected_item[2])
         contact_ent.insert(tk.END, selected_item[3])
         address_ent.insert(tk.END, selected_item[4])
+        phone_ent.insert(tk.END, selected_item[5])
+        gender_combobox.set(selected_item[6])
         parents_ent.insert(tk.END, selected_item[7])
-        parents_phone_ent.insert(tk.END, selected_item[8])
-        entry_checkin.insert(tk.END, selected_item[9])
-        entry_checkout.insert(tk.END, selected_item[10])
+        entry_checkin.insert(tk.END, selected_item[8])
+        entry_checkout.insert(tk.END, selected_item[9])
     else:
         add_btn.grid(row=11, columnspan=2, pady=10)
         edit_btn.grid_forget()
@@ -108,8 +109,8 @@ def clear_entries():
     name_ent.delete(0, tk.END)
     contact_ent.delete(0, tk.END)
     address_ent.delete(0, tk.END)
+    phone_ent.delete(0, tk.END)
     parents_ent.delete(0, tk.END)
-    parents_phone_ent.delete(0, tk.END)
     gender_combobox.set('')
     entry_checkin.delete(0, tk.END)
     entry_checkout.delete(0, tk.END)
@@ -121,10 +122,10 @@ def edit_student():
     name = name_ent.get()
     contact_no = contact_ent.get()
     address = address_ent.get()
-    phone_no = contact_ent.get()  # Corrected variable name
+    phone_no = phone_ent.get()
     gender = gender_combobox.get()
     parents_name = parents_ent.get()
-    parents_number = parents_phone_ent.get()  # Corrected variable name
+    parents_number= phone_ent.get()
     checkin_date = entry_checkin.get()
     checkout_date = entry_checkout.get()
     cursor.execute("UPDATE students SET room_no=?, name=?, contact_no=?, address=?, phone_no=?, gender=?, parents_name=?, parents_phone_number=?, checkin_date=?, checkout_date=? WHERE id=?",(room_no, name, contact_no, address, phone_no, gender, parents_name, parents_number, checkin_date, checkout_date, selected_id))
@@ -208,11 +209,11 @@ parents_lbl.grid(row=5, column=0, padx=2, pady=2)
 parents_ent = tk.Entry(detail_frame, bd=0, font=("Arial", 15))
 parents_ent.grid(row=5, column=1, padx=2, pady=2)
 
-parents_phone_lbl = tk.Label(detail_frame, text="Parent's Phone No", font=("Arial", 15), bg="lightgrey")
-parents_phone_lbl.grid(row=6, column=0, padx=2, pady=2)
+phone_lbl = tk.Label(detail_frame, text="Parent's Phone No", font=("Arial", 15), bg="lightgrey")
+phone_lbl.grid(row=6, column=0, padx=2, pady=2)
 
-parents_phone_ent = tk.Entry(detail_frame, bd=0, font=("Arial", 15))
-parents_phone_ent.grid(row=6, column=1, padx=2, pady=2)
+phone_ent = tk.Entry(detail_frame, bd=0, font=("Arial", 15))
+phone_ent.grid(row=6, column=1, padx=2, pady=2)
 
 lbl_checkin_date = tk.Label(detail_frame, text="Check-In-Date", font=("Arial", 15), bg="lightgrey")
 lbl_checkin_date.grid(row=7, column=0, padx=2, pady=2)
