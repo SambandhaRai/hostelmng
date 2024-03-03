@@ -12,10 +12,10 @@ root.configure(bg="#fff")
 root.resizable(False,False)
 
 frame1=Frame(root,width=430,height=350).place(x=40,y=60)
-logo=Image.open("/Users/sambandharai/Downloads/log123.png").resize((500,400))
+logo=Image.open("/Users/sambandharai/Downloads/logo123.png").resize((400,120))
 logo_tk=ImageTk.PhotoImage(logo)
 my_label=ttk.Label(frame1,image=logo_tk)
-my_label.place(x=5,y=0)
+my_label.place(x=45,y=135)
 
 
 conn = sqlite3.connect('hostelers.db')
